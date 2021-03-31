@@ -67,8 +67,8 @@
 
     <TextBlock
       Grid.Row="1"
-      x:Name="txt"
-      Text="Hello, world!"
+      x:Name="MousePos"
+      Text=""
       FontSize="30" />
 
   </Grid>
