@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
+        <RollForward>Major</RollForward>
         <OutputType>Exe</OutputType>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <NoWarn>NU1701</NoWarn>
+        <WasmHead>true</WasmHead>
+        <DefineConstants>__WASM__</DefineConstants>
+        <UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
+        <WasmShellIndexHtmlPath>wwwroot\index.html</WasmShellIndexHtmlPath>
+        <UnoUIDisableLongPathWarning>true</UnoUIDisableLongPathWarning>
     </PropertyGroup>
+
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
         <MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
         <DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
         <DebugType>portable</DebugType>
         <DebugSymbols>true</DebugSymbols>
+        <WasmShellILLinkerEnabled>false</WasmShellILLinkerEnabled>
     </PropertyGroup>
+
     <ItemGroup>
         <Content Include="Assets\SplashScreen.png"/>
     </ItemGroup>
+
     <ItemGroup>
         <UpToDateCheckInput Include="..\Uno.CanvasSample.Shared\**\*.xaml"/>
     </ItemGroup>
+
     <ItemGroup>
-        <EmbeddedResource Include="WasmCSS\Fonts.css"/>
-        <EmbeddedResource Include="WasmScripts\AppManifest.js"/>
+        <EmbeddedResource Include="WasmCSS\*.css"/>
+        <EmbeddedResource Include="WasmScripts\*.js"/>
     </ItemGroup>
+
+	<PropertyGroup>
+		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);System\.Reflection\.Assembly\.GetExecutingAssembly</WasmShellAOTProfileExcludedMethods>
+		<WasmShellAOTProfileExcludedMethods>$(WasmShellAOTProfileExcludedMethods);Dispose</WasmShellAOTProfileExcludedMethods>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<MonoRuntimeMixedModeExcludedAssembly Include="System.Console" />
+	</ItemGroup>
+    
     <ItemGroup>
         <LinkerDescriptor Include="LinkerConfig.xml"/>
     </ItemGroup>
+
+	<ItemGroup>
+		<WasmShellMonoEnvironment Include="MONO_GC_PARAMS" Value="soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep" />
+	</ItemGroup>
+    
     <ItemGroup>
         <!--
         This item group is required by the project template because of the
@@ -33,16 +59,26 @@
         -->
         <None Include="Program.cs"/>
         <None Include="LinkerConfig.xml"/>
+        <None Include="wwwroot\index.html" />
         <None Include="wwwroot\web.config"/>
     </ItemGroup>
+    
     <ItemGroup>
         <!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
+        <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1"/>
-        <PackageReference Include="Uno.UI.WebAssembly" Version="3.5.1"/>
-        <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.1" Condition="'$(Configuration)'=='Debug'"/>
-        <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.4"/>
-        <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.4"/>
+        <PackageReference Include="Uno.UI" Version="3.7.0-dev.92" />
+        <PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.92" />
+        <PackageReference Include="Uno.UI.WebAssembly" Version="3.7.0-dev.92" />
+        <PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0-dev.25" />
+        <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.1.0-dev.25" />
     </ItemGroup>
+
     <Import Project="..\Uno.CanvasSample.Shared\Uno.CanvasSample.Shared.projitems" Label="Shared" Condition="Exists('..\Uno.CanvasSample.Shared\Uno.CanvasSample.Shared.projitems')"/>
 </Project>
