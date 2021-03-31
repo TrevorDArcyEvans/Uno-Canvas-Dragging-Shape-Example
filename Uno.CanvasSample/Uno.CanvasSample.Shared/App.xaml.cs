@@ -166,7 +166,7 @@ namespace Uno.CanvasSample
           }
         )
 #if DEBUG
-                .AddConsole(LogLevel.Debug);
+        .AddConsole(LogLevel.Debug);
 #else
         .AddConsole(LogLevel.Information);
 #endif
