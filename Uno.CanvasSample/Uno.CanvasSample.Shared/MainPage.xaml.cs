@@ -96,5 +96,41 @@ namespace Uno.CanvasSample
     
     #endregion
     
+    #region Translate
+    
+    private const double TranslateInc = 10d;
+    
+    private void Translate_Up(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.TranslateY -= TranslateInc;
+    }
+    
+    private void Translate_Down(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.TranslateY += TranslateInc;
+    }
+    
+    private void Translate_Left(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.TranslateX -= TranslateInc;
+    }
+    
+    private void Translate_Right(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.TranslateX += TranslateInc;
+    }
+    
+    private void Translate_Reset(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.TranslateX = 0;
+      ct.TranslateY = 0;
+    }
+
+    #endregion
   }
 }
