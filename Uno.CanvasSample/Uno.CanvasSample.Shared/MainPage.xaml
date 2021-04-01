@@ -7,17 +7,35 @@
   mc:Ignorable="d">
 
   <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="200" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
     <Canvas
       x:Name="canvas"
+      Grid.ColumnSpan="5"
+      BorderBrush="Red"
       Background="Transparent"
-      PointerMoved="Canvas_OnPointerMoved"
-      Grid.Row="0">
-
+      PointerMoved="Canvas_OnPointerMoved">
+      
+      <Canvas.RenderTransform>
+        <CompositeTransform 
+          ScaleX="0.75" 
+          ScaleY="0.75" 
+          TranslateX="200" 
+          TranslateY="300" />
+      </Canvas.RenderTransform>
+    
       <!-- First child (Red) -->
       <Rectangle
         PointerPressed="Shape_OnMouseDown"
@@ -64,12 +82,32 @@
         Canvas.Left="60"
         Canvas.Top="60" />
     </Canvas>
-
+  
     <TextBlock
+      Grid.Row="3"
+      Margin="0"
+      x:Name="MousePos" />
+    
+    <Button
       Grid.Row="1"
-      x:Name="MousePos"
-      Text=""
-      FontSize="30" />
+      Grid.Column="3"
+      Content="U" />
+    <Button
+      Grid.Row="2"
+      Grid.Column="2"
+      Content="L" />
+    <Button
+      Grid.Row="2"
+      Grid.Column="4"
+      Content="R" />
+    <Button
+      Grid.Row="3"
+      Grid.Column="3"
+      Content="D" />
+    <Button
+      Grid.Row="2"
+      Grid.Column="3"
+      Content="O" />
 
   </Grid>
 
