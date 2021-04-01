@@ -26,7 +26,6 @@
     <Canvas
       x:Name="canvas"
       Grid.ColumnSpan="5"
-      BorderBrush="Red"
       Background="Transparent"
       PointerMoved="Canvas_OnPointerMoved">
       
