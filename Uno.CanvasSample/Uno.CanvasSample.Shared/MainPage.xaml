@@ -31,8 +31,6 @@
       
       <Canvas.RenderTransform>
         <CompositeTransform 
-          ScaleX="0.75" 
-          ScaleY="0.75" 
           TranslateX="200" 
           TranslateY="300" />
       </Canvas.RenderTransform>
@@ -91,15 +89,18 @@
     <Button
       Grid.Row="1"
       Grid.Column="2"
-      Content="+" />
+      Content="+"
+      Click="Zoom_In" />
     <Button
       Grid.Row="2"
       Grid.Column="2"
-      Content="0" />
+      Content="0"
+      Click="Zoom_Fit" />
     <Button
       Grid.Row="3"
       Grid.Column="2"
-      Content="-" />
+      Content="-"
+      Click="Zoom_Out" />
     
     <Button
       Grid.Row="1"

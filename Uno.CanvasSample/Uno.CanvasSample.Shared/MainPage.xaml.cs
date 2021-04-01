@@ -4,16 +4,11 @@ namespace Uno.CanvasSample
   using Windows.UI.Xaml.Controls;
   using Windows.UI.Xaml.Input;
   using Windows.UI.Xaml.Shapes;
-
+  using Windows.UI.Xaml;
+  using Windows.UI.Xaml.Media;
+  
   public sealed partial class MainPage
   {
-    private bool _drag;
-    private PointerPoint _startPoint;
-
-    // we already have 4 rectangles, so topmost in Z order will be 5
-    // NOTE: this will eventually overflow but is good enough for a demo
-    private int _currZindex = 5;
-
     public MainPage()
     {
       InitializeComponent();
@@ -24,6 +19,15 @@ namespace Uno.CanvasSample
       var currPt = e.GetCurrentPoint(null);
       MousePos.Text = $"({currPt.Position.X:0}, {currPt.Position.Y:0})";
     }
+
+    #region Shape
+    
+    private bool _drag;
+    private PointerPoint _startPoint;
+
+    // we already have 4 rectangles, so topmost in Z order will be 5
+    // NOTE: this will eventually overflow but is good enough for a demo
+    private int _currZindex = 5;
 
     private void Shape_OnMouseDown(object sender, PointerRoutedEventArgs e)
     {
@@ -62,5 +66,35 @@ namespace Uno.CanvasSample
       // stop dragging
       _drag = false;
     }
+    
+    #endregion
+    
+    #region Zoom
+    
+    private const double ZoomInc = 0.1;
+    
+    private void Zoom_In(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.ScaleX += ZoomInc;
+      ct.ScaleY += ZoomInc;
+    }
+    
+    private void Zoom_Fit(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.ScaleX = 1.0;
+      ct.ScaleY = 1.0;
+    }
+    
+    private void Zoom_Out(object sender, RoutedEventArgs e)
+    {
+      var ct = (CompositeTransform)canvas.RenderTransform;
+      ct.ScaleX -= ZoomInc;
+      ct.ScaleY -= ZoomInc;
+    }
+    
+    #endregion
+    
   }
 }
