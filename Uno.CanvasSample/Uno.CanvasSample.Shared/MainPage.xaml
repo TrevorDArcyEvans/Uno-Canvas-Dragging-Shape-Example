@@ -31,8 +31,8 @@
       
       <Canvas.RenderTransform>
         <CompositeTransform
-          ScaleX="0.75"
-          ScaleY="0.75"
+          ScaleX="1"
+          ScaleY="1"
           TranslateX="200" 
           TranslateY="300" />
       </Canvas.RenderTransform>
