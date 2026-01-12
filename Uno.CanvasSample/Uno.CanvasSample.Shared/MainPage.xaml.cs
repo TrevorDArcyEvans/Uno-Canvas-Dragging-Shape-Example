@@ -17,7 +17,7 @@ namespace Uno.CanvasSample
     private void Canvas_OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {
       var currPt = e.GetCurrentPoint(null);
-      MousePos.Text = $"({currPt.Position.X:0}, {currPt.Position.Y:0})";
+      MousePos.Text = $"({currPt.Position.X:0}, {currPt.Position.Y:0})@{((CompositeTransform)canvas.RenderTransform).ScaleX}";
     }
 
     #region Shape
