@@ -3,7 +3,7 @@
     <PropertyGroup>
         <OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
         <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup Condition="exists('..\Uno.CanvasSample.UWP')">
         <EmbeddedResource Include="..\Uno.CanvasSample.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest"/>
@@ -15,10 +15,10 @@
     </ItemGroup>
     <ItemGroup>
         <!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1"/>
-        <PackageReference Include="Uno.UI.RemoteControl" Version="3.7.0-dev.92" />
-        <PackageReference Include="Uno.UI.Skia.Gtk" Version="3.7.0-dev.92" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
+        <PackageReference Include="Uno.UI.RemoteControl" Version="5.7.0-dev.814" />
+        <PackageReference Include="Uno.UI.Skia.Gtk" Version="5.7.0-dev.814" />
     </ItemGroup>
     <Import Project="..\Uno.CanvasSample.Shared\Uno.CanvasSample.Shared.projitems" Label="Shared"/>
 </Project>

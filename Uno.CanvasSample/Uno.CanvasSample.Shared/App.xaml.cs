@@ -30,8 +30,6 @@ namespace Uno.CanvasSample
     /// </summary>
     public App()
     {
-      ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
-
       this.InitializeComponent();
       this.Suspending += OnSuspending;
     }
@@ -128,8 +126,8 @@ namespace Uno.CanvasSample
       factory
         .WithFilter(new FilterLoggerSettings
           {
-            {"Uno", LogLevel.Warning},
-            {"Windows", LogLevel.Warning},
+            { "Uno", LogLevel.Warning },
+            { "Windows", LogLevel.Warning },
 
             // Debug JS interop
             // { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
@@ -164,12 +162,7 @@ namespace Uno.CanvasSample
             // { "Windows.UI.Xaml.Controls.BufferViewCache", LogLevel.Debug }, //Android
             // { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
           }
-        )
-#if DEBUG
-        .AddConsole(LogLevel.Debug);
-#else
-        .AddConsole(LogLevel.Information);
-#endif
+        );
     }
   }
 }
