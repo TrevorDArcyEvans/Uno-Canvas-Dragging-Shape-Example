@@ -28,17 +28,18 @@
       Grid.ColumnSpan="5"
       Background="Transparent"
       PointerMoved="Canvas_OnPointerMoved">
-      
+
       <Canvas.RenderTransform>
         <CompositeTransform
           ScaleX="1"
           ScaleY="1"
-          TranslateX="200" 
+          TranslateX="200"
           TranslateY="300" />
       </Canvas.RenderTransform>
-    
+
       <!-- First child (Red) -->
       <Rectangle
+        x:Name="Rectangle1"
         PointerPressed="Shape_OnMouseDown"
         PointerMoved="Shape_OnMouseMove"
         PointerReleased="Shape_OnMouseUp"
@@ -49,6 +50,7 @@
 
       <!-- Second child (Green) -->
       <Rectangle
+        x:Name="Rectangle2"
         PointerPressed="Shape_OnMouseDown"
         PointerMoved="Shape_OnMouseMove"
         PointerReleased="Shape_OnMouseUp"
@@ -82,12 +84,21 @@
         Height="50"
         Canvas.Left="60"
         Canvas.Top="60" />
+
+      <Line
+        x:Name="Line12"
+        X1="0"
+        Y1="0"
+        X2="300"
+        Y2="300"
+        Stroke="Black"
+        StrokeThickness="4" />
     </Canvas>
-  
+
     <TextBlock
       Grid.Row="3"
       x:Name="MousePos" />
-    
+
     <Button
       Grid.Row="1"
       Grid.Column="2"
@@ -103,7 +114,7 @@
       Grid.Column="2"
       Content="-"
       Click="Zoom_Out" />
-    
+
     <Button
       Grid.Row="1"
       Grid.Column="5"
