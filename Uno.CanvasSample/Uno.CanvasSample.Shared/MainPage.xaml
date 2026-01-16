@@ -8,139 +8,171 @@
 
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="200" />
       <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="10" />
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="*" />
       <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
-    <Canvas
-      x:Name="canvas"
-      Grid.ColumnSpan="5"
-      Background="Transparent"
-      PointerMoved="Canvas_OnPointerMoved">
+    <!-- canvas -->
+    <Grid BorderBrush="Black" BorderThickness="1">
+      <Canvas
+        x:Name="canvas"
+        Grid.ColumnSpan="5"
+        Background="Transparent"
+        ContextFlyout="{StaticResource colorMenuFlyout}"
+        PointerMoved="Canvas_OnPointerMoved">
 
-      <Canvas.RenderTransform>
-        <CompositeTransform
-          ScaleX="1"
-          ScaleY="1"
-          TranslateX="200"
-          TranslateY="300" />
-      </Canvas.RenderTransform>
+        <Canvas.RenderTransform>
+          <CompositeTransform
+            ScaleX="1"
+            ScaleY="1" />
+        </Canvas.RenderTransform>
 
-      <!-- First child (Red) -->
-      <Ellipse
-        x:Name="Circle1"
-        PointerPressed="Shape_OnMouseDown"
-        PointerMoved="Shape_OnMouseMove"
-        PointerReleased="Shape_OnMouseUp"
-        PointerExited="Shape_OnMouseUp"
-        Fill="Red"
-        Width="50"
-        Height="50" />
+        <!-- First child (Red) -->
+        <Ellipse
+          x:Name="Circle1"
+          PointerPressed="Shape_OnMouseDown"
+          PointerMoved="Shape_OnMouseMove"
+          PointerReleased="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseUp"
+          Fill="Red"
+          Width="50"
+          Height="50" />
 
-      <!-- Second child (Green) -->
-      <Ellipse
-        x:Name="Circle2"
-        PointerPressed="Shape_OnMouseDown"
-        PointerMoved="Shape_OnMouseMove"
-        PointerReleased="Shape_OnMouseUp"
-        PointerExited="Shape_OnMouseUp"
-        Fill="Green"
-        Width="50"
-        Height="50"
-        Canvas.Left="20"
-        Canvas.Top="20" />
+        <!-- Second child (Green) -->
+        <Ellipse
+          x:Name="Circle2"
+          PointerPressed="Shape_OnMouseDown"
+          PointerMoved="Shape_OnMouseMove"
+          PointerReleased="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseUp"
+          Fill="Green"
+          Width="50"
+          Height="50"
+          Canvas.Left="20"
+          Canvas.Top="20" />
 
-      <!-- Third child (Blue) -->
-      <Ellipse
-        PointerPressed="Shape_OnMouseDown"
-        PointerMoved="Shape_OnMouseMove"
-        PointerReleased="Shape_OnMouseUp"
-        PointerExited="Shape_OnMouseUp"
-        Fill="Blue"
-        Width="50"
-        Height="50"
-        Canvas.Left="40"
-        Canvas.Top="40" />
+        <!-- Third child (Blue) -->
+        <Ellipse
+          PointerPressed="Shape_OnMouseDown"
+          PointerMoved="Shape_OnMouseMove"
+          PointerReleased="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseUp"
+          Fill="Blue"
+          Width="50"
+          Height="50"
+          Canvas.Left="40"
+          Canvas.Top="40" />
 
-      <!-- Fourth child (Purple) -->
-      <Ellipse
-        PointerPressed="Shape_OnMouseDown"
-        PointerMoved="Shape_OnMouseMove"
-        PointerReleased="Shape_OnMouseUp"
-        PointerExited="Shape_OnMouseUp"
-        Fill="Purple"
-        Width="50"
-        Height="50"
-        Canvas.Left="60"
-        Canvas.Top="60" />
+        <!-- Fourth child (Purple) -->
+        <Ellipse
+          PointerPressed="Shape_OnMouseDown"
+          PointerMoved="Shape_OnMouseMove"
+          PointerReleased="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseUp"
+          Fill="Purple"
+          Width="50"
+          Height="50"
+          Canvas.Left="60"
+          Canvas.Top="60" />
 
-      <Line
-        x:Name="Line12"
-        X1="0"
-        Y1="0"
-        X2="300"
-        Y2="300"
-        Stroke="Black"
-        StrokeThickness="4" />
-    </Canvas>
+        <Line
+          x:Name="Line12"
+          X1="0"
+          Y1="0"
+          X2="300"
+          Y2="300"
+          Stroke="Black"
+          StrokeThickness="4" />
+      </Canvas>
+    </Grid>
 
-    <TextBlock
-      Grid.Row="3"
-      x:Name="MousePos" />
+    <!-- mouse pos -->
+    <Grid Row="1">
+      <TextBlock
+        x:Name="MousePos" />
+    </Grid>
 
-    <Button
-      Grid.Row="1"
-      Grid.Column="2"
-      Content="+"
-      Click="Zoom_In" />
-    <Button
-      Grid.Row="2"
-      Grid.Column="2"
-      Content="0"
-      Click="Zoom_Fit" />
-    <Button
-      Grid.Row="3"
-      Grid.Column="2"
-      Content="-"
-      Click="Zoom_Out" />
+    <!-- view manipulation -->
+    <Grid Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="10" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      
+      <!-- zoom -->
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button
+          Grid.Column="1"
+          Grid.Row="0"
+          Content="+"
+          Click="Zoom_In" />
+        <Button
+          Grid.Column="1"
+          Grid.Row="1"
+          Content="0"
+          Click="Zoom_Fit" />
+        <Button
+          Grid.Column="1"
+          Grid.Row="2"
+          Content="-"
+          Click="Zoom_Out" />
+      </Grid>
 
-    <Button
-      Grid.Row="1"
-      Grid.Column="5"
-      Content="U"
-      Click="Translate_Up" />
-    <Button
-      Grid.Row="2"
-      Grid.Column="4"
-      Content="L"
-      Click="Translate_Left" />
-    <Button
-      Grid.Row="2"
-      Grid.Column="6"
-      Content="R"
-      Click="Translate_Right" />
-    <Button
-      Grid.Row="3"
-      Grid.Column="5"
-      Content="D"
-      Click="Translate_Down" />
-    <Button
-      Grid.Row="2"
-      Grid.Column="5"
-      Content="O"
-      Click="Translate_Reset" />
-
+      <!-- translate -->
+      <Grid Row="2">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button
+          Grid.Row="0"
+          Grid.Column="1"
+          Content="U"
+          Click="Translate_Up" />
+        <Button
+          Grid.Row="1"
+          Grid.Column="0"
+          Content="L"
+          Click="Translate_Left" />
+        <Button
+          Grid.Row="1"
+          Grid.Column="2"
+          Content="R"
+          Click="Translate_Right" />
+        <Button
+          Grid.Row="2"
+          Grid.Column="1"
+          Content="D"
+          Click="Translate_Down" />
+        <Button
+          Grid.Row="1"
+          Grid.Column="1"
+          Content="O"
+          Click="Translate_Reset" />
+      </Grid>
+    </Grid>
   </Grid>
 
 </Page>
