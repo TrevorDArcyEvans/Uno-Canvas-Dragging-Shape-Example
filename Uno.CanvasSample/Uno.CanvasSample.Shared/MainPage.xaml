@@ -5,6 +5,11 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
+  <Page.Resources>
+    <MenuFlyout x:Key="AddNodeMenu">
+      <MenuFlyoutItem Text="Add" Click="AddNode" />
+    </MenuFlyout>
+  </Page.Resources>
 
   <Grid>
     <Grid.ColumnDefinitions>
@@ -22,7 +27,7 @@
         x:Name="canvas"
         Grid.ColumnSpan="5"
         Background="Transparent"
-        ContextFlyout="{StaticResource colorMenuFlyout}"
+        ContextFlyout="{StaticResource AddNodeMenu}"
         PointerMoved="Canvas_OnPointerMoved">
 
         <Canvas.RenderTransform>
@@ -104,7 +109,7 @@
         <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
       </Grid.RowDefinitions>
-      
+
       <!-- zoom -->
       <Grid>
         <Grid.RowDefinitions>

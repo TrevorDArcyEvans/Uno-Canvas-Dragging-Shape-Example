@@ -1,3 +1,5 @@
+using Windows.UI;
+
 namespace Uno.CanvasSample
 {
   using Windows.UI.Input;
@@ -14,10 +16,12 @@ namespace Uno.CanvasSample
       InitializeComponent();
     }
 
+    private PointerPoint _currPoint;
+
     private void Canvas_OnPointerMoved(object sender, PointerRoutedEventArgs e)
     {
-      var currPt = e.GetCurrentPoint(null);
-      MousePos.Text = $"({currPt.Position.X:0}, {currPt.Position.Y:0})@{((CompositeTransform) canvas.RenderTransform).ScaleX}";
+      _currPoint = e.GetCurrentPoint(null);
+      MousePos.Text = $"({_currPoint.Position.X:0}, {_currPoint.Position.Y:0})@{((CompositeTransform) canvas.RenderTransform).ScaleX}";
     }
 
     #region Shape
@@ -149,5 +153,24 @@ namespace Uno.CanvasSample
     }
 
     #endregion
+
+    private void AddNode(object sender, RoutedEventArgs e)
+    {
+      var circle = new Ellipse()
+      {
+        Height = 50,
+        Width = 50,
+        Fill = new SolidColorBrush(Colors.Fuchsia)
+      };
+      circle.PointerPressed += Shape_OnMouseDown;
+      circle.PointerMoved += Shape_OnMouseMove;
+      circle.PointerReleased += Shape_OnMouseUp;
+      circle.PointerExited += Shape_OnMouseUp;
+      
+      Canvas.SetLeft(circle, _currPoint.Position.X);
+      Canvas.SetTop(circle, _currPoint.Position.Y);
+
+      canvas.Add(circle);
+    }
   }
 }
