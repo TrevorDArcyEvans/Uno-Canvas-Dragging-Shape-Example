@@ -24,8 +24,7 @@
     <!-- canvas -->
     <Grid BorderBrush="Black" BorderThickness="1">
       <Canvas
-        x:Name="canvas"
-        Grid.ColumnSpan="5"
+        x:Name="Canvas"
         Background="Transparent"
         ContextFlyout="{StaticResource AddNodeMenu}"
         PointerMoved="Canvas_OnPointerMoved">

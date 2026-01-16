@@ -20,7 +20,7 @@ public sealed partial class MainPage
   private void Canvas_OnPointerMoved(object sender, PointerRoutedEventArgs e)
   {
     _currPoint = e.GetCurrentPoint(null);
-    MousePos.Text = $"({_currPoint.Position.X:0}, {_currPoint.Position.Y:0})@{((CompositeTransform) canvas.RenderTransform).ScaleX}";
+    MousePos.Text = $"({_currPoint.Position.X:0}, {_currPoint.Position.Y:0})@{((CompositeTransform) Canvas.RenderTransform).ScaleX}";
   }
 
   #region Shape
@@ -38,7 +38,7 @@ public sealed partial class MainPage
     _drag = true;
 
     // save start point of dragging
-    _startPoint = e.GetCurrentPoint(canvas);
+    _startPoint = e.GetCurrentPoint(Canvas);
 
     // move selected circle to the top of the Z order
     var draggedCircle = sender as Ellipse;
@@ -56,7 +56,7 @@ public sealed partial class MainPage
     var draggedCircle = sender as Ellipse;
     var left = Canvas.GetLeft(draggedCircle);
     var top = Canvas.GetTop(draggedCircle);
-    var newPoint = e.GetCurrentPoint(canvas);
+    var newPoint = e.GetCurrentPoint(Canvas);
     Canvas.SetLeft(draggedCircle, left + (newPoint.RawPosition.X - _startPoint.RawPosition.X));
     Canvas.SetTop(draggedCircle, top + (newPoint.RawPosition.Y - _startPoint.RawPosition.Y));
 
@@ -95,21 +95,21 @@ public sealed partial class MainPage
 
   private void Zoom_In(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.ScaleX += ZoomInc;
     ct.ScaleY += ZoomInc;
   }
 
   private void Zoom_Fit(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.ScaleX = 1.0;
     ct.ScaleY = 1.0;
   }
 
   private void Zoom_Out(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.ScaleX -= ZoomInc;
     ct.ScaleY -= ZoomInc;
   }
@@ -122,31 +122,31 @@ public sealed partial class MainPage
 
   private void Translate_Up(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.TranslateY -= TranslateInc;
   }
 
   private void Translate_Down(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.TranslateY += TranslateInc;
   }
 
   private void Translate_Left(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.TranslateX -= TranslateInc;
   }
 
   private void Translate_Right(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.TranslateX += TranslateInc;
   }
 
   private void Translate_Reset(object sender, RoutedEventArgs e)
   {
-    var ct = (CompositeTransform) canvas.RenderTransform;
+    var ct = (CompositeTransform) Canvas.RenderTransform;
     ct.TranslateX = 0;
     ct.TranslateY = 0;
   }
@@ -169,6 +169,6 @@ public sealed partial class MainPage
     Canvas.SetLeft(circle, _currPoint.Position.X);
     Canvas.SetTop(circle, _currPoint.Position.Y);
 
-    canvas.Add(circle);
+    Canvas.Add(circle);
   }
 }
