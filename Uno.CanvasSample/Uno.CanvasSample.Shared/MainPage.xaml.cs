@@ -25,7 +25,7 @@ namespace Uno.CanvasSample
     private bool _drag;
     private PointerPoint _startPoint;
 
-    // we already have 4 rectangles, so topmost in Z order will be 5
+    // we already have 4 circle, so topmost in Z order will be 5
     // NOTE: this will eventually overflow but is good enough for a demo
     private int _currZindex = 5;
 
@@ -37,9 +37,9 @@ namespace Uno.CanvasSample
       // save start point of dragging
       _startPoint = e.GetCurrentPoint(canvas);
 
-      // move selected rectangle to the top of the Z order
-      var draggedRectangle = sender as Rectangle;
-      Canvas.SetZIndex(draggedRectangle, _currZindex++);
+      // move selected circle to the top of the Z order
+      var draggedCircle = sender as Ellipse;
+      Canvas.SetZIndex(draggedCircle, _currZindex++);
     }
 
     private void Shape_OnMouseMove(object sender, PointerRoutedEventArgs e)
@@ -49,32 +49,32 @@ namespace Uno.CanvasSample
         return;
       }
 
-      // if dragging, then adjust rectangle position based on mouse movement
-      var draggedRectangle = sender as Rectangle;
-      var left = Canvas.GetLeft(draggedRectangle);
-      var top = Canvas.GetTop(draggedRectangle);
+      // if dragging, then adjust circle position based on mouse movement
+      var draggedCircle = sender as Ellipse;
+      var left = Canvas.GetLeft(draggedCircle);
+      var top = Canvas.GetTop(draggedCircle);
       var newPoint = e.GetCurrentPoint(canvas);
-      Canvas.SetLeft(draggedRectangle, left + (newPoint.RawPosition.X - _startPoint.RawPosition.X));
-      Canvas.SetTop(draggedRectangle, top + (newPoint.RawPosition.Y - _startPoint.RawPosition.Y));
+      Canvas.SetLeft(draggedCircle, left + (newPoint.RawPosition.X - _startPoint.RawPosition.X));
+      Canvas.SetTop(draggedCircle, top + (newPoint.RawPosition.Y - _startPoint.RawPosition.Y));
 
-      UpdateLine(draggedRectangle);
+      UpdateLine(draggedCircle);
 
       // save where we end up
       _startPoint = newPoint;
     }
 
-    private void UpdateLine(Rectangle draggedRectangle)
+    private void UpdateLine(Ellipse draggedCircle)
     {
-      if (draggedRectangle == Rectangle1)
+      if (draggedCircle == Circle1)
       {
-        Line12.X1 = Canvas.GetLeft(Rectangle1) + Rectangle1.Width / 2;
-        Line12.Y1 = Canvas.GetTop(Rectangle1) + Rectangle1.Height / 2;
+        Line12.X1 = Canvas.GetLeft(Circle1) + Circle1.Width / 2;
+        Line12.Y1 = Canvas.GetTop(Circle1) + Circle1.Height / 2;
       }
 
-      if (draggedRectangle == Rectangle2)
+      if (draggedCircle == Circle2)
       {
-        Line12.X2 = Canvas.GetLeft(Rectangle2) + Rectangle2.Width / 2;
-        Line12.Y2 = Canvas.GetTop(Rectangle2) + Rectangle2.Height / 2;
+        Line12.X2 = Canvas.GetLeft(Circle2) + Circle2.Width / 2;
+        Line12.Y2 = Canvas.GetTop(Circle2) + Circle2.Height / 2;
       }
     }
 

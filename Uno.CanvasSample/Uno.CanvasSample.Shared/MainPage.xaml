@@ -38,8 +38,8 @@
       </Canvas.RenderTransform>
 
       <!-- First child (Red) -->
-      <Rectangle
-        x:Name="Rectangle1"
+      <Ellipse
+        x:Name="Circle1"
         PointerPressed="Shape_OnMouseDown"
         PointerMoved="Shape_OnMouseMove"
         PointerReleased="Shape_OnMouseUp"
@@ -49,8 +49,8 @@
         Height="50" />
 
       <!-- Second child (Green) -->
-      <Rectangle
-        x:Name="Rectangle2"
+      <Ellipse
+        x:Name="Circle2"
         PointerPressed="Shape_OnMouseDown"
         PointerMoved="Shape_OnMouseMove"
         PointerReleased="Shape_OnMouseUp"
@@ -62,7 +62,7 @@
         Canvas.Top="20" />
 
       <!-- Third child (Blue) -->
-      <Rectangle
+      <Ellipse
         PointerPressed="Shape_OnMouseDown"
         PointerMoved="Shape_OnMouseMove"
         PointerReleased="Shape_OnMouseUp"
@@ -74,7 +74,7 @@
         Canvas.Top="40" />
 
       <!-- Fourth child (Purple) -->
-      <Rectangle
+      <Ellipse
         PointerPressed="Shape_OnMouseDown"
         PointerMoved="Shape_OnMouseMove"
         PointerReleased="Shape_OnMouseUp"
