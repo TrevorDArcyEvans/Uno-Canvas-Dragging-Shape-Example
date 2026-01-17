@@ -6,8 +6,19 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
   <Page.Resources>
-    <MenuFlyout x:Key="AddNodeMenu">
-      <MenuFlyoutItem Text="Add" Click="AddNode" />
+    <MenuFlyout x:Key="AddNodeMenu" x:Name="AddNodeMenu">
+      <MenuFlyoutItem Text="Add node" Click="AddNode" />
+    </MenuFlyout>
+    
+    <MenuFlyout x:Key="EditNodeMenu" x:Name="EditNodeMenu">
+      <MenuFlyoutItem Text="Add link" Click="AddLink" />
+      <MenuFlyoutItem Text="Edit" Click="EditNode" />
+      <MenuFlyoutItem Text="Delete" Click="DeleteNode" />
+    </MenuFlyout>
+    
+    <MenuFlyout x:Key="EditLinkMenu" x:Name="EditLinkMenu">
+      <MenuFlyoutItem Text="Edit" Click="EditLink" />
+      <MenuFlyoutItem Text="Delete" Click="DeleteLink" />
     </MenuFlyout>
   </Page.Resources>
 
@@ -43,6 +54,7 @@
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
           PointerExited="Shape_OnMouseExited"
+          ContextFlyout="{StaticResource EditNodeMenu}"
           Fill="Red"
           Width="50"
           Height="50" />
@@ -55,6 +67,7 @@
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
           PointerExited="Shape_OnMouseExited"
+          ContextFlyout="{StaticResource EditNodeMenu}"
           Fill="Green"
           Width="50"
           Height="50"
@@ -68,6 +81,7 @@
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
           PointerExited="Shape_OnMouseExited"
+          ContextFlyout="{StaticResource EditNodeMenu}"
           Fill="Blue"
           Width="50"
           Height="50"
@@ -81,6 +95,7 @@
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
           PointerExited="Shape_OnMouseExited"
+          ContextFlyout="{StaticResource EditNodeMenu}"
           Fill="Purple"
           Width="50"
           Height="50"

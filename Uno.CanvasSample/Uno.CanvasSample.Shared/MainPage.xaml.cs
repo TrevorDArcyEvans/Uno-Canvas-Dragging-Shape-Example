@@ -41,6 +41,9 @@ public sealed partial class MainPage
     _oldColour = shape.Fill;
     _oldStroke = shape.Stroke;
     shape.Fill = shape.Stroke = new SolidColorBrush(Colors.Chartreuse);
+
+    // remove canvas CSM otherwise we get it displayed along with shape CSM
+    Canvas.ContextFlyout = null;
   }
 
   private void Shape_OnMouseDown(object sender, PointerRoutedEventArgs e)
@@ -106,6 +109,9 @@ public sealed partial class MainPage
     var shape = (Shape) sender;
     shape.Fill = _oldColour;
     shape.Stroke = _oldStroke;
+
+    // restore canvas CSM
+    Canvas.ContextFlyout = AddNodeMenu;
   }
 
   #endregion
@@ -187,10 +193,36 @@ public sealed partial class MainPage
     circle.PointerMoved += Shape_OnMouseMove;
     circle.PointerReleased += Shape_OnMouseUp;
     circle.PointerExited += Shape_OnMouseExited;
+    circle.ContextFlyout = EditNodeMenu;
 
     Canvas.SetLeft(circle, _currPoint.Position.X);
     Canvas.SetTop(circle, _currPoint.Position.Y);
 
     Canvas.Add(circle);
+  }
+
+  private void AddLink(object sender, RoutedEventArgs e)
+  {
+    throw new System.NotImplementedException();
+  }
+
+  private void EditNode(object sender, RoutedEventArgs e)
+  {
+    throw new System.NotImplementedException();
+  }
+
+  private void DeleteNode(object sender, RoutedEventArgs e)
+  {
+    throw new System.NotImplementedException();
+  }
+
+  private void EditLink(object sender, RoutedEventArgs e)
+  {
+    throw new System.NotImplementedException();
+  }
+
+  private void DeleteLink(object sender, RoutedEventArgs e)
+  {
+    throw new System.NotImplementedException();
   }
 }
