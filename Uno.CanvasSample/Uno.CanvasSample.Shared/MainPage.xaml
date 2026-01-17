@@ -85,6 +85,7 @@
 
         <Line
           x:Name="Line12"
+          Canvas.ZIndex="-1"
           X1="25"
           Y1="25"
           X2="45"
