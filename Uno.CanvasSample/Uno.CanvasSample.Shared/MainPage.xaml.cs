@@ -41,7 +41,7 @@ public sealed partial class MainPage
     _startPoint = e.GetCurrentPoint(Canvas);
 
     // move selected circle to the top of the Z order
-    var draggedCircle = sender as Ellipse;
+    var draggedCircle = (Ellipse)sender;
     Canvas.SetZIndex(draggedCircle, _currZindex++);
   }
 
@@ -53,7 +53,7 @@ public sealed partial class MainPage
     }
 
     // if dragging, then adjust circle position based on mouse movement
-    var draggedCircle = sender as Ellipse;
+    var draggedCircle = (Ellipse)sender;
     var left = Canvas.GetLeft(draggedCircle);
     var top = Canvas.GetTop(draggedCircle);
     var newPoint = e.GetCurrentPoint(Canvas);
