@@ -38,10 +38,11 @@
         <!-- First child (Red) -->
         <Ellipse
           x:Name="Circle1"
+          PointerEntered="Shape_OnMouseEntered"
           PointerPressed="Shape_OnMouseDown"
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
-          PointerExited="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseExited"
           Fill="Red"
           Width="50"
           Height="50" />
@@ -49,10 +50,11 @@
         <!-- Second child (Green) -->
         <Ellipse
           x:Name="Circle2"
+          PointerEntered="Shape_OnMouseEntered"
           PointerPressed="Shape_OnMouseDown"
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
-          PointerExited="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseExited"
           Fill="Green"
           Width="50"
           Height="50"
@@ -61,10 +63,11 @@
 
         <!-- Third child (Blue) -->
         <Ellipse
+          PointerEntered="Shape_OnMouseEntered"
           PointerPressed="Shape_OnMouseDown"
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
-          PointerExited="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseExited"
           Fill="Blue"
           Width="50"
           Height="50"
@@ -73,10 +76,11 @@
 
         <!-- Fourth child (Purple) -->
         <Ellipse
+          PointerEntered="Shape_OnMouseEntered"
           PointerPressed="Shape_OnMouseDown"
           PointerMoved="Shape_OnMouseMove"
           PointerReleased="Shape_OnMouseUp"
-          PointerExited="Shape_OnMouseUp"
+          PointerExited="Shape_OnMouseExited"
           Fill="Purple"
           Width="50"
           Height="50"
@@ -85,6 +89,9 @@
 
         <Line
           x:Name="Line12"
+          PointerEntered="Shape_OnMouseEntered"
+          PointerExited="Shape_OnMouseExited"
+          IsHitTestVisible="True"
           Canvas.ZIndex="-1"
           X1="25"
           Y1="25"

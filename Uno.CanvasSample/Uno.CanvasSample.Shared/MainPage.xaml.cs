@@ -32,6 +32,17 @@ public sealed partial class MainPage
   // NOTE: this will eventually overflow but is good enough for a demo
   private int _currZindex = 5;
 
+  private Brush _oldColour;
+  private Brush _oldStroke;
+
+  private void Shape_OnMouseEntered(object sender, PointerRoutedEventArgs e)
+  {
+    var shape = (Shape) sender;
+    _oldColour = shape.Fill;
+    _oldStroke = shape.Stroke;
+    shape.Fill = shape.Stroke = new SolidColorBrush(Colors.Chartreuse);
+  }
+
   private void Shape_OnMouseDown(object sender, PointerRoutedEventArgs e)
   {
     // start dragging
@@ -41,7 +52,7 @@ public sealed partial class MainPage
     _startPoint = e.GetCurrentPoint(Canvas);
 
     // move selected circle to the top of the Z order
-    var draggedCircle = (Ellipse)sender;
+    var draggedCircle = (Ellipse) sender;
     Canvas.SetZIndex(draggedCircle, _currZindex++);
   }
 
@@ -53,7 +64,7 @@ public sealed partial class MainPage
     }
 
     // if dragging, then adjust circle position based on mouse movement
-    var draggedCircle = (Ellipse)sender;
+    var draggedCircle = (Ellipse) sender;
     var left = Canvas.GetLeft(draggedCircle);
     var top = Canvas.GetTop(draggedCircle);
     var newPoint = e.GetCurrentPoint(Canvas);
@@ -85,6 +96,16 @@ public sealed partial class MainPage
   {
     // stop dragging
     _drag = false;
+  }
+
+  private void Shape_OnMouseExited(object sender, PointerRoutedEventArgs e)
+  {
+    // stop dragging
+    _drag = false;
+
+    var shape = (Shape) sender;
+    shape.Fill = _oldColour;
+    shape.Stroke = _oldStroke;
   }
 
   #endregion
@@ -161,11 +182,12 @@ public sealed partial class MainPage
       Width = 50,
       Fill = new SolidColorBrush(Colors.Fuchsia)
     };
+    circle.PointerEntered += Shape_OnMouseEntered;
     circle.PointerPressed += Shape_OnMouseDown;
     circle.PointerMoved += Shape_OnMouseMove;
     circle.PointerReleased += Shape_OnMouseUp;
-    circle.PointerExited += Shape_OnMouseUp;
-      
+    circle.PointerExited += Shape_OnMouseExited;
+
     Canvas.SetLeft(circle, _currPoint.Position.X);
     Canvas.SetTop(circle, _currPoint.Position.Y);
 
