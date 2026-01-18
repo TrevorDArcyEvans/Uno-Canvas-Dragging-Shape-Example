@@ -10,7 +10,14 @@
       <MenuFlyoutItem Text="Add node" Click="AddNode" />
     </MenuFlyout>
     
-    <MenuFlyout x:Key="EditNodeMenu" x:Name="EditNodeMenu">
+    <MenuFlyout 
+      x:Key="EditNodeMenu" 
+      x:Name="EditNodeMenu"
+      Opening="EditNodeMenu_OnOpening">
+      <ToggleMenuFlyoutItem 
+        Text="Start"
+        Click="StartNode"
+        IsChecked="{x:Bind IsStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
       <MenuFlyoutItem Text="Add link" Click="AddLink" />
       <MenuFlyoutItem Text="Edit" Click="EditNode" />
       <MenuFlyoutItem Text="Delete" Click="DeleteNode" />

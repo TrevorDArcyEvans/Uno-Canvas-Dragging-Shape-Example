@@ -1,5 +1,7 @@
 namespace Uno.CanvasSample;
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Windows.UI;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
@@ -8,11 +10,18 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 
-public sealed partial class MainPage
+public sealed partial class MainPage : INotifyPropertyChanged
 {
   public MainPage()
   {
     InitializeComponent();
+  }
+
+  public event PropertyChangedEventHandler PropertyChanged;
+
+  private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+  {
+    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
   }
 
   private PointerPoint _currPoint;
@@ -201,6 +210,12 @@ public sealed partial class MainPage
     Canvas.Add(circle);
   }
 
+  private Shape _startNode;
+  private void StartNode(object sender, RoutedEventArgs e)
+  {
+    _startNode = (Shape) EditNodeMenu.Target;
+  }
+
   private void AddLink(object sender, RoutedEventArgs e)
   {
     throw new System.NotImplementedException();
@@ -224,5 +239,26 @@ public sealed partial class MainPage
   private void DeleteLink(object sender, RoutedEventArgs e)
   {
     throw new System.NotImplementedException();
+  }
+
+  public bool IsStart
+  {
+    get;
+
+    set
+    {
+      if (value == field)
+      {
+        return;
+      }
+
+      field = value;
+      OnPropertyChanged();
+    }
+  }
+
+  private void EditNodeMenu_OnOpening(object sender, object e)
+  {
+    IsStart = EditNodeMenu.Target == _startNode;
   }
 }
