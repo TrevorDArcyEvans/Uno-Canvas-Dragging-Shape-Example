@@ -91,16 +91,16 @@ public sealed partial class MainPage : INotifyPropertyChanged
 
   private void UpdateLine(Ellipse draggedCircle)
   {
-    if (draggedCircle == Circle1)
+    if (draggedCircle == Node1)
     {
-      Line12.X1 = Canvas.GetLeft(Circle1) + Circle1.Width / 2;
-      Line12.Y1 = Canvas.GetTop(Circle1) + Circle1.Height / 2;
+      Link12.X1 = Canvas.GetLeft(Node1) + Node1.Width / 2;
+      Link12.Y1 = Canvas.GetTop(Node1) + Node1.Height / 2;
     }
 
-    if (draggedCircle == Circle2)
+    if (draggedCircle == Node2)
     {
-      Line12.X2 = Canvas.GetLeft(Circle2) + Circle2.Width / 2;
-      Line12.Y2 = Canvas.GetTop(Circle2) + Circle2.Height / 2;
+      Link12.X2 = Canvas.GetLeft(Node2) + Node2.Width / 2;
+      Link12.Y2 = Canvas.GetTop(Node2) + Node2.Height / 2;
     }
   }
 

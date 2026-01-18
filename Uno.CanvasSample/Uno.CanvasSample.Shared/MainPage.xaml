@@ -53,21 +53,9 @@
             ScaleY="1" />
         </Canvas.RenderTransform>
 
-        <Line
-          x:Name="Line12"
-          PointerEntered="Shape_OnMouseEntered"
-          PointerExited="Shape_OnMouseExited"
-          ContextFlyout="{StaticResource EditLinkMenu}"
-          X1="25"
-          Y1="25"
-          X2="45"
-          Y2="45"
-          Stroke="Black"
-          StrokeThickness="4" />
-
         <!-- First child (Red) -->
         <Ellipse
-          x:Name="Circle1"
+          x:Name="Node1"
           PointerEntered="Shape_OnMouseEntered"
           PointerPressed="Shape_OnMouseDown"
           PointerMoved="Shape_OnMouseMove"
@@ -80,7 +68,7 @@
 
         <!-- Second child (Green) -->
         <Ellipse
-          x:Name="Circle2"
+          x:Name="Node2"
           PointerEntered="Shape_OnMouseEntered"
           PointerPressed="Shape_OnMouseDown"
           PointerMoved="Shape_OnMouseMove"
@@ -120,6 +108,19 @@
           Height="50"
           Canvas.Left="60"
           Canvas.Top="60" />
+
+        <Line
+          x:Name="Link12"
+          PointerEntered="Shape_OnMouseEntered"
+          PointerExited="Shape_OnMouseExited"
+          ContextFlyout="{StaticResource EditLinkMenu}"
+          X1="25"
+          Y1="25"
+          X2="45"
+          Y2="45"
+          Canvas.ZIndex="-1"
+          Stroke="Black"
+          StrokeThickness="4" />
       </Canvas>
     </Grid>
 
